@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <title>Big</title>
+  <link href="themes/dark.css" rel="stylesheet" type="text/css" />
+  <link href="big.css" rel="stylesheet" type="text/css" />
+  <script src="big.js"></script>
+</head>
+<body class="light">
+  <div>
+    <div>css-camera</div>
+    <notes>최근에 css-camera라는 라이브러리를 만들어서 배포했습니다.</notes>
+  </div>
+  <div>
+    <div>3D library<br/>(with CSS)</div>
+    <notes>CSS의 3d transform을 이용해서 자유자재로 컨트롤할 수 있는 카메라를 만든건데요</notes>
+  </div>
+  <div>
+    <em>Frontend Focus</em>에<br/>소개되었습니다.
+    <br/>
+    <h3>(Issue#409)</h3>
+  </div>
+  <div class="layout" style="width: 100%">
+    <img src="https://cdn.glitch.com/b06260c3-b041-4eb9-bd58-1eb74c7433e1%2FFEF2.png?v=1569833342888" style="width: 100%; height: 100%;" />
+  </div>
+  <div>
+    <div><a href="https://woodneck.github.io/css-camera/">데모</a></div>
+    <notes>데모를 먼저 보여드리겠습니다</notes>
+  </div>
+  <div class="layout" style="grid-template-columns: 1fr;grid-template-rows:75% 25%;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/1200px-CSS3_logo_and_wordmark.svg.png" />
+    <center>perspective</center>
+    <notes>오늘 설명드릴 부분은 크게 두가지입니다. 먼저 perspective가 무엇인지, 그리고 아까 데모에서 보셨던 focus() 메소드에서 사용되는 transform의 역추적 방법에 대해서입니다.</notes>
+  </div>
+  <div>
+    <div>perspective?</div>
+  </div>
+  <div>
+    <ul>
+      <li>Perspective</li>
+      <li>Orthographic</li>
+    </ul>
+  </div>
+  <div>
+    <ul>
+      <li>원근법</li>
+      <li>정사영</li>
+    </ul>
+  </div>
+  <div>
+    <div>
+      Perspective<br/>(원근법)
+    </div>
+  </div>
+  <div>
+    <div>멀면 멀수록 작아진다</div>
+    <notes>앞서 말씀드린 것처럼, perspective는 멀면 멀수록 작아지는 개념입니다.</notes>
+  </div>
+  <div class="layout" style="grid-template-columns: 1fr;grid-template-rows:75% 25%;">
+    <img src="https://i.stack.imgur.com/AAXBA.jpg" />
+    <div><em>Perspective</em> vs <em>Orthographic</em></div>
+  </div>
+  <div>
+    <h2>=멀리 떨어진 물체를 코앞(화면)으로 가져올 때 크기가 줄어든다</h2>
+  </div>
+  <div style="width: 100%;">
+    <img style="width: 100%;" src="https://www.researchgate.net/profile/Yongbin_Sun2/publication/324584663/figure/fig2/AS:616612889640970@1524023377841/The-perspective-projection-of-a-camera-model.png" />
+  </div>
+  <div class="layout" style="grid-template-columns: 1fr;grid-template-rows:75% 25%;">
+    <img src="https://i.stack.imgur.com/zyGF1.gif" />
+    <div><em>Perspective</em> vs <em>Orthographic</em></div>
+  </div>
+  <div>
+    <div>perspective?</div>
+    <notes>이제 원래 질문으로 되돌아가봅시다. 그래서 perspective란 대체 뭔가? 에 대한 답은 아직 나오지 않았죠.</notes>
+  </div>
+  <div>
+    <h4>뭘 정하는 값?</h4>
+    <notes>저희는 perspective에 300px과 같이 어떤 수치를 입력할 수가 있는데, 이게 대체 뭘 정하는 값이냐?</notes>
+  </div>
+  <div class="layout" style="width: 100%">
+    <img src="https://i.imgur.com/VjYcVsi.gif" style="width: 100%; height: 100%;" />
+  </div>
+  <div class="layout" style="width: 100%">
+    <img src="https://i.imgur.com/wqua9gR.gif" style="width: 100%; height: 100%;" />
+    <notes>perspective는 그림에 나온 이 값을 정의하는 값입니다. 여기 이 작은 평면이 화면이라고 생각해보세요, perspective는 그 화면으로부터 얼마나 멀리 떨어진 곳에서 관찰하는 것처럼 행동하느냐를 결정합니다.</notes>
+  </div>
+  <div>perspective는 <em>사각뿔의 모양</em>을 결정합니다!</div>
+  <div class="layout" style="width: 100%">
+    <img src="https://i.imgur.com/P0xfvLl.gif" style="width: 100%; height: 100%;" />
+  </div>
+  <div class="layout" style="width: 100%">
+    <img src="https://i.imgur.com/w2rWnZo.gif" style="width: 100%; height: 100%;" />
+  </div>
+  <div>좀 더<br/>간략화하면</div>
+  <div class="layout" style="width: 100%">
+    <img src="https://cdn.glitch.com/b06260c3-b041-4eb9-bd58-1eb74c7433e1%2Fperspective300.jpg?v=1569832346680" style="width: 100%; height: 100%;" />
+  </div>
+  <div class="layout" style="width: 100%">
+    <img src="https://cdn.glitch.com/b06260c3-b041-4eb9-bd58-1eb74c7433e1%2Fperspective600.jpg?v=1569832445057" style="width: 100%; height: 100%;" />
+  </div>
+  <div>perspective가<br/><em>커지면</em><br/>물체의 크기도<br/><em>커진다</em></div>
+  <div>실제로<br/>확인해봅시다</div>
+  <div>
+    <div><a href="https://codepen.io/woodneck/pen/vYBVKKJ">예제</a></div>
+  </div>
+  <div>Q/A..?</div>
+</body>
+</html>
